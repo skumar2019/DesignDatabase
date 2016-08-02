@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title> Team 2485 Design Database - Advanced </title>
+<link rel="database.css" type="text/css" href="mystyle.css">
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #cccccc;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.jfk-textinput{-webkit-border-radius:1px;-moz-border-radius:1px;border-radius:1px;border:1px solid #d9d9d9;border-top:1px solid #c0c0c0;font-size:13px;height:25px;padding:1px 8px}.jfk-textinput:focus{-webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,0.3);-moz-box-shadow:inset 0 1px 2px rgba(0,0,0,0.3);box-shadow:inset 0 1px 2px rgba(0,0,0,0.3);border:1px solid #4d90fe;outline:none}.jfk-textinput::-ms-clear{display:none}
+
+</style>
+</head>
+<body>
+<form id=form>
+    <b>Team Name:<b> <br> 
+	  <input class="jfk-textinput" value="" autofocus="autofocus" id="_dKg" name="formInput[TeamName][]" type="text" placeholder="Search...">
+  <br> <br>
+
+    <b>Team Number:<b> <br>
+    <i> Please Enter a Range (e.g. 2000-3000, 1200-1300) </i> <br>
+    <input class="jfk-textinput" value="" autofocus="autofocus" id="_dKg" name="formInput[TeamNumber][]" type="text" placeholder="Search...">
+
+  <br> <br> 
+    <b>Year:<b> <br>
+    <i> Please Enter a Range (e.g. 2015-2016) </i> <br>
+    <input class="jfk-textinput" value="" autofocus="autofocus" id="_dKg" name="formInput[Year][]" type="text" placeholder="Search...">
+
+  <br> <br>
+
+    <b>Robot Name:<b> <br>
+    <i> To enter multiple robot names,  separate each name with an OR (capitalized) for your search to work. (e.g. Orion OR Xerxes, Valkyrie OR Sun Tzu) </i> <br>
+    <input class="jfk-textinput" value="" autofocus="autofocus" id="_dKg" name="formInput[RobotName][]" type="text" placeholder="Search...">
+
+  <br> <br>
+
+
+    <b> Drive Train: </b> <br>
+    <i> Check all that are applicable </i> <br>
+    <input type="checkbox" name="driveTrain[]" value="Mecanum"> Mecanum </input> <br>
+    <input type="checkbox" name="driveTrain[]" value="Swerve"> Swerve </input> <br>
+    <input type="checkbox" name="driveTrain[]" value="Treads/Tank"> Treads/Tank </input> <br>
+    <input type="checkbox" name="driveTrain[]" value="West Coast"> West Coast </input> <br>
+    <input type="checkbox" name="driveTrain[]" value="H-Drive"> H-Drive </input> <br>
+    <input type="checkbox" name="driveTrain[]" value="Other" id=Other> Other:  <input class="jfk-textinput" value="" autofocus="autofocus" id="_dKg" name="as_q" type="text" placeholder="Search..."> </input>
+
+    <br> <br>
+
+ 
+    <b> Intake: </b> <br>
+    <i> Check all that are applicable </i> <br>
+    <input type="checkbox" name="intake[]" value="Roller Arm"> Roller Arm </input> <br> 
+    <input type="checkbox" name="intake[]" value="Claw"> Claw </input> <br> 
+    <input type="checkbox" name="intake[]" value="Other" id=Other> Other:  <input class="jfk-textinput" value="" autofocus="autofocus" id="_dKg" name="as_q" type="text" placeholder="Search..."> </input> <br> 
+
+
+
+    <b> Shooter: </b> <br>
+    <i> Check all that are applicable </i> <br>
+    <input type="checkbox" name="shooter[]" value="Claw"> Claw </input> <br> 
+    <input type="checkbox" name="shooter[]" value="Flywheel"> Flywheel </input> <br> 
+    <input type="checkbox" name="shooter[]" value="Catapult"> Catapult </input> <br> 
+    <input type="checkbox" name="shooter[]" value="Turret"> Turret </input> <br> 
+    <input type="checkbox" name="shooter[]" value="Other" id=Other> Other:  <input class="jfk-textinput" value="" autofocus="autofocus" id="_dKg" name="as_q" type="text" placeholder="Search...">  </input> <br> 
+  <br> <br>
+
+
+    <b>Key Words:<b> <br>
+    <i> Separate different keywords with a capitalized OR (e.g. Apples OR Bananas OR Oranges) </i> <br>
+    <input class="jfk-textinput" value="" autofocus="autofocus" id="_dKg" name="formInput[Keywords][]" type="text" placeholder="Search...">
+
+  <br> <br>
+  
+  <input type="submit" value="Submit" id=submit>
+
+</form>
+
+  <br> <br>
+        <table id=teamtable style='tr:nth-child(even) {
+    background-color: #dddddd';
+}>
+        </table>
+</body>
+
+<script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+
+
+<script type="text/javascript">
+function ajaxGet() {
+  var query = document.getElementById("_dKg").value;
+   $.get( "php/advancedDatabase.php?q=" + query, function( data ) {
+       document.getElementById("teamtable").innerHTML = data;
+   });
+}
+
+$(function() {
+   $('#submit').click(function() {
+      $.get("php/advancedDatabase.php?q=" + document.getElementById("_dKg").value, function( data ) {
+        document.getElementById("teamtable").innerHTML = data;
+      })
+      return false;
+
+    }); 
+
+}
+
+  );
+
+</script>
+</html>
