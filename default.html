@@ -24,29 +24,32 @@ tr:nth-child(even) {
 </head>
 <body>
   <form id=form>
-    <b>Query:<b><br><br>
-	  <input class="jfk-textinput" value="" autofocus="autofocus" id="_dKg" name="as_q" type="text">
-    <input type="submit" value="Submit" id=submit>
+    
   </form>
-        <table id=teamtable style='tr:nth-child(even) {
-    background-color: #dddddd';
-}>
+  <br><br>
+        <table id=teamtable>
         </table>
 </body>
 
 <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
 
+<script>
+  function formElement(name, type) {
+    this.id = id;
+    this.type = type;
+  }
 
-<script type="text/javascript">
-function ajaxGet() {
-  var query = document.getElementById("_dKg").value;
-   $.get( "php/data.php?q=" + query, function( data ) {
-       document.getElementById("teamtable").innerHTML = data;
-   });
-}
+  var formElements = [
+    new formElement("Team Number","Text");
+  ]
+
+
 
 $(function() {
    $('#submit').click(function() {
+
+      
+
       $.get("php/data.php?q=" + document.getElementById("_dKg").value, function( data ) {
         document.getElementById("teamtable").innerHTML = data;
       })
@@ -57,6 +60,7 @@ $(function() {
 }
 
   );
+
 
 </script>
 </html>
